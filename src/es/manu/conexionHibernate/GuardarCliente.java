@@ -1,5 +1,4 @@
 package es.manu.conexionHibernate;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -7,7 +6,6 @@ import org.hibernate.cfg.Configuration;
 public class GuardarCliente {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
 		// 1 crear un objeto tipo sessionFactory para leer el archivo de configuracion
 
@@ -22,7 +20,7 @@ public class GuardarCliente {
 		
 		try {
 			
-			Clientes cliente1 = new Clientes("Renee", "Schmidt", "la Rivera");
+			Clientes cliente1 = new Clientes("Vannesa", "Cara", "Villa");
 			
 			miSesion.beginTransaction();
 			
@@ -33,6 +31,20 @@ public class GuardarCliente {
 			System.out.println(cliente1.toString());
 			
 			System.out.println("Registro insertado Correctamente");
+			
+		//Lectura de registro
+			
+			miSesion.beginTransaction();
+			
+			System.out.println("Lectura del registro con Id: " +  cliente1.getId());
+			
+			Clientes clientesInsetado = miSesion.get(Clientes.class, cliente1.getId());
+			
+			System.out.println("Registro: " + clientesInsetado);
+			
+			miSesion.getTransaction().commit();
+			
+			System.out.println("Terminado");
 			
 		}finally {
 			
